@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 
 
@@ -113,10 +113,11 @@ class App extends React.Component{
   state = {
     isLoading: true
   };
+  getMovies = async () => {
+    const movies = await axios.get("http://yts-proxy.now.sh/list_movies.json");
+  } // async 비동기화 
   componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading : false});
-    }, 6000);
+    this.getMovies();
   }
   render(){
     const { isLoading } = this.state;
