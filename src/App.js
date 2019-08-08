@@ -1,8 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 
 
+
+
+/*
 // api 이용할 경우
 const foodILike = [
     {
@@ -35,12 +37,12 @@ const foodILike = [
         rating: 4.4
     }
 ];
-/*
+
 function renderFood(dish){
   return <Food name={dish.name} picture={dish.image} />;
 }
 전과 같은방법 이지만 새로운 함수 생성
-*/
+
 
 function Food({ name, picture, rating }){
   return (
@@ -58,6 +60,8 @@ Food.propTypes = {
   rating: PropTypes.number // isRequired 필수적으로 판단
 };
 
+
+
 function App() {
   return (
     <div>
@@ -73,4 +77,33 @@ function App() {
 }
 // <Food name="kimchi" /> jsx
 // value = kimchi, fav = props
+export default App;
+
+
+*/
+
+// class component로 변경
+class App extends React.Component{
+  state = {
+    count: 0,
+  };
+  add = () => {
+    this.setState(current => ({count: current.count + 1 }));
+  };
+  minus = () => {
+    this.setState(current => ({count: current.count - 1}));
+  };
+  render(){
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={ this.add }>Add</button>
+        <button onClick={ this.minus }>Minus</button>
+      </div>
+    );
+  }
+
+}
+
+
 export default App;
