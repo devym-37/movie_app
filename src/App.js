@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
-
+import './App.css';
 
 
 /*
@@ -46,11 +46,11 @@ function renderFood(dish){
 
 function Food({ name, picture, rating }){
   return (
-  <div>
+  <section>
     <h2>I like {name}</h2>
     <h4>{rating}/5.0</h4>
     <img src={picture} alt={name} />
-  </div>
+  </section>
   );
 }
 
@@ -64,7 +64,7 @@ Food.propTypes = {
 
 function App() {
   return (
-    <div>
+    <section>
       {foodILike.map(dish => (
         <Food 
         key={dish.id} 
@@ -72,7 +72,7 @@ function App() {
         picture={dish.image} 
         rating={dish.rating} />
       ))}
-    </div>
+    </section>
   );
 }
 // <Food name="kimchi" /> jsx
@@ -95,11 +95,11 @@ class App extends React.Component{
   };
   render(){
     return (
-      <div>
+      <section>
         <h1>The number is : {this.state.count}</h1>
         <button onClick={ this.add }>Add</button>
         <button onClick={ this.minus }>Minus</button>
-      </div>
+      </section>
     );
   }
 
@@ -127,9 +127,25 @@ class App extends React.Component{
   }
   render(){
     const { isLoading, movies } = this.state;
-    return <div>{isLoading ? "Loading..." : movies.map(movie => (
-      <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} />
-    ))}</div>;
+    return <section class="container">
+    {isLoading ? (
+      <div class="loader">
+        <span class="loader__text">Loading...</span>
+      </div>
+    ) : (
+      <div class="movies">
+      {movies.map(movie => (
+      <Movie 
+        key={movie.id} 
+        id={movie.id} 
+        year={movie.year} 
+        title={movie.title} 
+        summary={movie.summary} 
+        poster={movie.medium_cover_image} />
+      ))}
+      </div>
+    )}
+    </section>;
   }
 }
 
